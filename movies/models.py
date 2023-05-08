@@ -10,7 +10,7 @@ class Movie(models.Model):
     genres = models.CharField(max_length=100)
     storyline = models.TextField(blank=True, null=True)
     trailer_url = models.URLField()
-    cover = models.ImageField(upload_to="images/covers")
+    cover = models.ImageField(upload_to="media")
     created_at= models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
