@@ -1,0 +1,121 @@
+{% extends 'movies/movies_base.html' %} 
+{% load static %} 
+{% block movies_content %}
+<div class="card">
+  <div class="card-body">
+    {% if selected_post %}
+    <form method="POST" action="{% url 'update_mention' selected_post.id %}" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="form-group mb-3 row">
+        <label class="form-label col-3 col-form-label">Title</label>
+        <div class="col">
+          <input
+            type="text"
+            name="title"
+            value="{{selected_post.title}}"
+            class="form-control"
+            placeholder="Name"
+          />
+        </div>
+      </div>
+      <div class="form-group mb-3 row">
+        <label class="form-label col-3 col-form-label"
+          >Release date:</label
+        >
+        <div class="col">
+          <input
+            type="datetime-local"
+            name="display_time_start"
+            value="{{selected_post.display_time_start|date:'Y-m-d H:i'}}"
+            class="form-control"
+            placeholder="Display start time"
+          />
+        </div>
+      </div>
+      <div class="form-group mb-3 row">
+        <label class="form-label col-3 col-form-label">Display end time</label>
+        <div class="col">
+          <input
+            type="datetime-local"
+            name="display_time_end"
+            value="{{selected_post.display_time_end|date:'Y-m-d H:i'}}"
+            class="form-control"
+            placeholder="Display end time"
+          />
+        </div>
+      </div>
+
+      <div class="form-footer">
+        <button type="submit" class="btn btn-primary">Update</button>
+      </div>
+    </form>
+    {% else %}
+    <form method="POST" action="{% url 'add_movie' %}">
+      {% csrf_token %}
+      <div class="form-group mb-3 row">
+        <label class="form-label col-3 col-form-label">Title</label>
+        <div class="col-5">
+          <input type="text" name="title" class="form-control" placeholder="Movie title" />
+        </div>
+      </div>
+      <div class="form-group mb-3 row">
+        <label class="form-label col-3 col-form-label">Release date</label>
+        <div class="col-5">
+          <input type="date" name="release_date" class="form-control"/>
+        </div>
+      </div>
+      <div class="form-group mb-3 row">
+        <label class="form-label col-3 col-form-label">Director(s)</label>
+        <div class="col-5">
+          <input type="text" name="directors" class="form-control" placeholder="Directors"/>
+        </div>
+      </div>
+      <div class="form-group mb-3 row">
+        <label class="form-label col-3 col-form-label">Actors(s)</label>
+        <div class="col-5">
+          <textarea name="actors" class="form-control" cols="30" rows="3" placeholder="Actors"></textarea>
+        </div>
+      </div>
+      <div class="form-group mb-3 row">
+        <label class="form-label col-3 col-form-label">Writer(s)</label>
+        <div class="col-5">
+          <textarea name="writers" class="form-control" cols="30" rows="3" placeholder="Writer(s)"></textarea>
+        </div>
+      </div>
+      <div class="form-group mb-3 row">
+        <label class="form-label col-3 col-form-label">Genres</label>
+        <div class="col-5">
+          <input type="text" name="genres" class="form-control" placeholder="Genres"/>
+        </div>
+      </div>
+      <div class="form-group mb-3 row">
+        <label class="form-label col-3 col-form-label">Storyline</label>
+        <div class="col-5">
+          <textarea name="storyline" class="form-control" cols="30" rows="3" placeholder="Storyline"></textarea>
+        </div>
+      </div>
+      <div class="form-group mb-3 row">
+        <label class="form-label col-3 col-form-label">Trailer Link</label>
+        <div class="col-5">
+          <input type="text" name="trailer_url" class="form-control" placeholder="Trailer link"/>
+        </div>
+      </div>
+      <div class="form-group mb-3 row">
+        <label class="form-label col-3 col-form-label">Cover</label>
+        <div class="col-5">
+          <input type="file" name="cover" class="form-control" placeholder="Cover"/>
+        </div>
+      </div>
+
+      <div class="form-footer">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </form>
+    {% endif %}
+  </div>
+</div>
+{% if uploaded_file_url %}
+<p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
+{% endif %}
+
+{% endblock %}

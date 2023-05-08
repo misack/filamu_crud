@@ -1,0 +1,52 @@
+{% load static %}
+
+<!DOCTYPE html>
+<!--
+* Tabler - Premium and Open Source dashboard template with responsive and high quality UI.
+* @version 1.0.0-beta5
+* @link https://tabler.io
+* Copyright 2018-2021 The Tabler Authors
+* Copyright 2018-2021 codecalm.net Paweł Kuna
+* Licensed under MIT (https://github.com/tabler/tabler/blob/master/LICENSE)
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>E FM</title>
+    <!-- CSS files -->
+    <link href="{% static 'css/tabler.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/tabler-flags.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/tabler-payments.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/tabler-vendors.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/demo.min.css' %}" rel="stylesheet" />
+  </head>
+  <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+    <div class="wrapper">
+      {% with request.resolver_match.url_name as url_name %}  
+      {% if url_name == 'display' %}
+      {% include 'partials/_header_display.html' %}
+      {% endif %}
+      {% if url_name == 'mentions' or url_name == 'add_mention' %}
+      {% comment %} {% if url_name == 'mentions' %} {% endcomment %}
+      {% include 'partials/_header.html' %}
+      {% endif %}
+      {% endwith %}
+      <div class="page-wrapper">
+        <div class="page-body">{% block content %} {% endblock %}</div>
+        {% comment %} {% include 'partials/_footer.html' %} {% endcomment %}
+      </div>
+    </div>
+    <!-- Libs JS -->
+    <script src="{% static 'libs/apexcharts/dist/apexcharts.min.js' %}"></script>
+    <!-- Tabler Core -->
+    <script src="{% static 'js/tabler.min.js' %}"></script>
+    <script src="{% static 'js/demo.min.js' %}"></script>
+    {% comment %} htmx {% endcomment %}
+    <script src="https://unpkg.com/htmx.org@1.1.0"></script>
+  </body>
+</html>
