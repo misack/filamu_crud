@@ -24,6 +24,15 @@ def view_movies(request):
 
     return render(request, 'movies/view_movies.html',context)
 
+
+def view_movie(request,pk):
+    movie =Movie.objects.get(id=pk)
+    context = {
+        'movie':movie,
+    }
+    return render(request,'movies/view_movie.html', context)
+
+
 def add_movie(request):
    
     if request.method == 'POST' and request.FILES['upload']:
@@ -54,8 +63,6 @@ def add_movie(request):
             cover = file
         )
         
-        
-    
         mention.save()
         messages.info(request,'A movie is added successfuly')
         return render(request, 'movies/add_movie.html', {
@@ -69,13 +76,6 @@ def add_movie(request):
     
     return render(request,'movies/add_movie.html')
 
-
-def view_movie(request,pk):
-    movie =Movie.objects.get(id=pk)
-    context = {
-        'movie':movie,
-    }
-    return render(request,'movies/view_movie.html', context)
 
 
 def edit_movie(request,pk):
