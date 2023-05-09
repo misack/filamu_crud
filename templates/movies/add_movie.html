@@ -1,10 +1,23 @@
-{% extends 'movies/movies_base.html' %} 
-{% load static %} 
-{% block movies_content %}
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
 
 {% for message in messages %}
   <p class="alert alert-success" style="animation fedout 5s forwards; @keyframes fedout{0%{opacity: 1; 90%{opacity: 1}; 100%{opacity: 0;}}">{{message}}</p>
 {% endfor%}
+
+
+<div class="row">
+  <div class="col-12">
+      <div class="page-title-box d-flex align-items-center justify-content-end pb-3">
+          <div class="page-title-right">
+            <a type="button" class="btn btn-primary w-100"
+                href="{% url 'view_movies' %}">Back
+            </a>
+          </div>
+      </div>
+  </div>
+</div>
 <div class="card">
   <div class="card-body">
     <form  action="{% url 'add_movie' %}" method="post" enctype="multipart/form-data">
