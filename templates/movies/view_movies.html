@@ -1,10 +1,21 @@
-{% extends 'movies/movies_base.html' %}
+{% extends 'base.html' %}
 {% load static %}
-{% block movies_content %}
+{% block content %}
 
 {% for message in messages %}
   <p class="alert alert-success" style="animation fedout 5s forwards; @keyframes fedout{0%{opacity: 1; 90%{opacity: 1}; 100%{opacity: 0;}}">{{message}}</p>
 {% endfor%}
+<div class="row">
+  <div class="col-12">
+      <div class="page-title-box d-flex align-items-center justify-content-end pb-3">
+          <div class="page-title-right">
+            <a type="button" class="btn btn-primary w-100"
+                href="{% url 'add_movie' %}">Add
+            </a>
+          </div>
+      </div>
+  </div>
+</div>
 <div class="table-responsive">
   <table class="table table-responsive card-table table-vcenter text-nowrap datatable width=100">
   <thead>
