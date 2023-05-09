@@ -1,6 +1,19 @@
-{% extends 'movies/movies_base.html' %} 
-{% load static %} 
-{% block movies_content %}
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="row">
+  <div class="col-12">
+      <div class="page-title-box d-flex align-items-center justify-content-end pb-3">
+          <div class="page-title-right">
+            <a type="button" class="btn btn-primary w-100"
+                href="{% url 'view_movies' %}">Back
+            </a>
+          </div>
+      </div>
+  </div>
+</div>
+
 <div class="card">
   <div class="card-body">
    
