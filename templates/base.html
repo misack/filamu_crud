@@ -37,7 +37,32 @@
       {% endif %}
       {% endwith %}
       <div class="page-wrapper">
-        <div class="page-body">{% block content %} {% endblock %}</div>
+        <div class="page-body">
+          <div class="container-xl">
+            <!-- Page title -->
+            <div class="page-header d-print-none">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h2 class="page-title">
+                    Movies
+                  </h2>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="page-body">
+            <div class="container-xl">
+              <div class="row row-cards">
+                  {% block content %} {% endblock %}
+              </div>
+          </div>
+        </div>
+      </div>
+      
+  
+  </div>
+        
+        </div>
         {% comment %} {% include 'partials/_footer.html' %} {% endcomment %}
       </div>
     </div>
