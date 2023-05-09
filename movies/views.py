@@ -11,7 +11,7 @@ from django.core.paginator import Paginator
 def view_movies(request):
     movies = Movie.objects.all()
 
-    paginator = Paginator(movies,2)
+    paginator = Paginator(movies,10)
     page_number = request.GET.get('page')
     movies = paginator.get_page(page_number)
 
