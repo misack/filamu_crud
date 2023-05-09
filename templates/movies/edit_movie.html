@@ -1,0 +1,74 @@
+{% extends 'movies/movies_base.html' %} 
+{% load static %} 
+{% block movies_content %}
+<div class="card">
+  <div class="card-body">
+   
+    <form  action="{% url 'update_movie' movie.id %}" method="post" enctype="multipart/form-data" >
+      {% csrf_token %}
+      <div class="form-group mb-3 row">
+        <label class="form-label col-3 col-form-label">Title</label>
+        <div class="col-6">
+          <input type="text" name="title" value="{{movie.title}}" class="form-control" placeholder="Movie title" />
+        </div>
+      </div>
+      <div class="form-group mb-3 row">
+        <label class="form-label col-3 col-form-label">Release date</label>
+        <div class="col-6">
+          <input type="date" name="release_date" value="{{movie.release_date|date:'Y-m-d'}}" class="form-control"/>
+        </div>
+      </div>
+      <div class="form-group mb-3 row">
+        <label class="form-label col-3 col-form-label">Director(s)</label>
+        <div class="col-6">
+          <input type="text" name="directors" value="{{movie.directors}}"class="form-control" placeholder="Directors"/>
+        </div>
+      </div>
+      <div class="form-group mb-3 row">
+        <label class="form-label col-3 col-form-label">Actors(s)</label>
+        <div class="col-6">
+          <textarea name="actors" class="form-control" cols="30" rows="3" placeholder="Actors">{{movie.actors}}</textarea>
+        </div>
+      </div>
+      <div class="form-group mb-3 row">
+        <label class="form-label col-3 col-form-label">Writer(s)</label>
+        <div class="col-6">
+          <textarea name="writers" class="form-control" cols="30" rows="2" placeholder="Writer(s)">{{movie.writers}}</textarea>
+        </div>
+      </div>
+      <div class="form-group mb-3 row">
+        <label class="form-label col-3 col-form-label">Genres</label>
+        <div class="col-6">
+          <input type="text" name="genres" value="{{movie.genres}}" class="form-control" placeholder="Genres"/>
+        </div>
+      </div>
+      <div class="form-group mb-3 row">
+        <label class="form-label col-3 col-form-label">Storyline</label>
+        <div class="col-6">
+          <textarea name="storyline" class="form-control" cols="30" rows="7" placeholder="Storyline">{{movie.storyline}}</textarea>
+        </div>
+      </div>
+      <div class="form-group mb-3 row">
+        <label class="form-label col-3 col-form-label">Trailer Link</label>
+        <div class="col-6">
+          <input type="text" name="trailer_url" value="{{movie.trailer_url}}" class="form-control" placeholder="Trailer link"/>
+          <span class="mt-2"><a href="../../{{movie.trailer_url}}">Preview Trailer</a></span>
+        </div>
+      </div>
+      <div class="form-group mb-3 row">
+        <label class="form-label col-3 col-form-label">Cover</label>
+        <div class="col-6">
+          <input type="file" name="upload" value="{{movie.cover}}" accept="image/*" class="form-control" placeholder="Cover"/>
+          <span class="mt-2"><a href="../media/{{movie.cover}}">Preview Cover</a></span>
+        </div>
+      </div>
+
+      <div class="form-footer">
+        <button type="submit" class="btn btn-primary">Update</button>
+      </div>
+    </form>
+ 
+  </div>
+</div>
+
+{% endblock %}
