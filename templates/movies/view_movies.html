@@ -40,17 +40,17 @@
         {{i.genres}}
       </td>
       <td>
-        <a href="">
+        <a href="{% url 'view_movie' i.id %}">
             More
           </a>
       </td>
       <td>
-        <a href="">
+        <a href="{% url 'edit_movie' i.id %}">
             Edit
           </a>
       </td>
       <td>
-        <a href="">
+        <a href="{% url 'delete_movie' i.id%}">
         Delete</a>
       </td>
       </td>
